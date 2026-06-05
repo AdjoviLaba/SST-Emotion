@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/nono/SST-Emotion/.vscode)",
+      "Read(//opt/anaconda3/envs/meta-eeg/bin/**)",
+      "Bash(/opt/anaconda3/envs/meta-eeg/bin/python --version)",
+      "Bash(kill 62183 62321 62333)"
+    ],
+    "additionalDirectories": [
+      "/Users/nono/SST-Emotion"
+    ]
+  }
+}
