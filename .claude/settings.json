@@ -6,7 +6,10 @@
       "Bash(/opt/anaconda3/envs/meta-eeg/bin/python --version)",
       "Bash(kill 62183 62321 62333)",
       "Bash(git -C /Users/nono/SST-Emotion remote add origin https://github.com/AdjoviLaba/SST-Emotion.git)",
-      "Bash(git -C /Users/nono/SST-Emotion push -u origin main)"
+      "Bash(git -C /Users/nono/SST-Emotion push -u origin main)",
+      "Bash(python3)",
+      "Bash(sed 's/_.*$//')",
+      "Bash(echo \"  .cnt files \\(raw\\): $\\(find /Users/nono/SST-Emotion/SEED_EEG/SEED_RAW_EEG -name \"*.cnt\" -type f)"
     ],
     "additionalDirectories": [
       "/Users/nono/SST-Emotion"
