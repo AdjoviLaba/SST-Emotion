@@ -1,0 +1,16 @@
+SEED
+SEED_IV
+result
+figure
+output_model
+venv_arm64_py310
+venv_arm64
+venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+

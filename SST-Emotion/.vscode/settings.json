@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "/Users/nono/SST-Emotion/venv_arm64/bin/python",
+  "python.analysis.extraPaths": [
+    "/Users/nono/SST-Emotion"
+  ]
+}
