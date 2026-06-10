@@ -123,7 +123,11 @@ def run():
             
             # Set to current meta weights
             model.set_weights(meta_weights)
-            
+
+            #Recompile the model to reset Adam's momentum states
+            model.compile(optimizer=keras.optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=1e-8, clipnorm=1.0), 
+                          loss='categorical_crossentropy', metrics=['accuracy']) 
+
             # Inner update
             model.fit([task_train_spec, task_train_temp], task_train_label, epochs=inner_epochs, batch_size=batch_size, verbose=0)
             
@@ -165,7 +169,7 @@ def run():
         eval_temp = np.concatenate(test_temp_list, axis=0)
         eval_label = np.concatenate(test_label_list, axis=0)
         
-        early_stopping = EarlyStopping(monitor='val_loss', patience=15, verbose=1)
+        early_stopping = EarlyStopping(monitor='val_loss', patience=15, verbose=1, restore_best_weights=True)
         save_model = ModelCheckpoint(filepath=os.path.join(model_save_path, f'Sub_{test_subject}_Meta.h5'), monitor='val_loss', save_best_only=True, mode='min')
         
         history = model.fit([ft_spec, ft_temp], ft_label, epochs=nbEpoch, batch_size=batch_size,
