@@ -86,7 +86,7 @@ def run():
     tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
 
     K.set_image_data_format('channels_last')
-    K.set_learning_phase(1)
+    #K.set_learning_phase(1)
 
     all_result_file = open(os.path.join(result_path, 'all_meta_result.txt'), "w")
     all_result_file.close()
@@ -102,7 +102,7 @@ def run():
         # Build new model
         model = sst_model.sst_emotionnet(input_width=input_width, specInput_length=specInput_length, temInput_length=temInput_length,
                                         depth_spec=depth_spec, depth_tem=depth_tem, gr_spec=gr_spec, gr_tem=gr_tem, nb_dense_block=nb_dense_block, nb_class=nb_class)
-        adam = keras.optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=1e-8)
+        adam = keras.optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=1e-8, clipnorm=1.0)
         model.compile(optimizer=adam, loss='categorical_crossentropy', metrics=['accuracy'])
         
         meta_weights = model.get_weights()
@@ -177,7 +177,7 @@ def run():
             json.dump(hist_dict, f)
             
         model = load_model(os.path.join(model_save_path, f'Sub_{test_subject}_Meta.h5'))
-        K.set_learning_phase(0)
+        #K.set_learning_phase(0)
         loss, accuracy = model.evaluate([eval_spec, eval_temp], eval_label)
         print(f'\nSubject {test_subject} test loss: {loss}, accuracy: {accuracy}')
         
